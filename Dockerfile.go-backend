@@ -1,0 +1,15 @@
+FROM golang:1.24-alpine as builder
+WORKDIR /app
+COPY cmd/go-backend/go.mod cmd/go-backend/go.sum ./
+# This ensures go.mod and go.sum are correctly populated based on your code's needs
+# and the module versions defined in go.mod itself.
+RUN go mod download
+COPY cmd/go-backend/*.go ./
+RUN go mod tidy # This will clean up dependencies and ensure they match your code
+RUN go build -o go-backend
+
+FROM alpine
+WORKDIR /app
+COPY --from=builder /app/go-backend .
+EXPOSE 4000
+CMD ["./go-backend"]

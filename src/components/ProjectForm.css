@@ -1,0 +1,246 @@
+.project-form {
+  max-width: 500px;
+  margin: 2.5rem auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.project-form h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #23272f;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #23272f;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #0066cc;
+  outline: none;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  resize: vertical;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: border-color 0.2s;
+}
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+  background: #fff;
+}
+
+.user-group-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+
+.add-btn, .remove-btn, .submit-btn, .confirm-btn, .cancel-btn {
+  background: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+
+.add-btn {
+  background: #e6f0fa;
+  color: #0066cc;
+  border: 1px solid #b3d1f7;
+  margin-bottom: 0.5rem;
+}
+.add-btn:hover {
+  background: #d0e6fa;
+}
+
+.remove-btn {
+  background: #f8d7da;
+  color: #c5221f;
+  border: 1px solid #f5c2c7;
+  padding: 0.5rem 0.75rem;
+}
+.remove-btn:hover {
+  background: #f1b0b7;
+}
+
+.submit-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: #0066cc;
+  color: #fff;
+}
+.submit-btn:hover {
+  background: #0052a3;
+}
+
+.user-count {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.message {
+  margin: 1rem 0 0.5rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+}
+.message.success {
+  background: #e6f4ea;
+  color: #1e4620;
+  border: 1px solid #b7e1cd;
+}
+.message.error {
+  background: #fce8e6;
+  color: #c5221f;
+  border: 1px solid #f5c2c7;
+}
+
+.summary-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 340px;
+  max-width: 95vw;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.summary-card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #23272f;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.summary-section {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  font-weight: 600;
+  color: #23272f;
+  margin-bottom: 0.25rem;
+}
+
+.summary-value {
+  font-size: 1.1rem;
+  color: #0066cc;
+  margin-bottom: 0.5rem;
+}
+
+.summary-users {
+  list-style: disc inside;
+  margin: 0.25rem 0 0 0.5rem;
+  padding: 0;
+}
+
+.summary-user-list {
+  font-weight: 500;
+  color: #23272f;
+  margin-right: 0.5rem;
+}
+
+.summary-role {
+  font-size: 0.98rem;
+  color: #555;
+  margin-left: 0.5rem;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.confirm-btn {
+  background: #0066cc;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.confirm-btn:hover {
+  background: #0052a3;
+}
+.cancel-btn {
+  background: #e6e6e6;
+  color: #23272f;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cancel-btn:hover {
+  background: #d1d5db;
+} 
