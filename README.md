@@ -44,7 +44,7 @@ The backend requires the following environment variables to be set **at runtime*
 2. **Set your environment variables in `docker-compose.yml`**
 3. **Start the stack:**
    ```bash
-   docker-compose up --build
+   docker-compose up --build app go-backend
    ```
 4. **Access the app:**
    - Frontend: [http://localhost](http://localhost)
@@ -118,20 +118,27 @@ curl -X POST http://localhost:4000/api/create-project \
    ```bash
    npm start
    ```
-   The application will be available at http://localhost:3000.
+4. Set the following environment variables before running the backend service:
 
-### Docker Setup
-1. Build the Docker image:
-   ```bash
-   docker build -t nobl9-onboarding-app .
-   ```
-2. Run the container:
-   ```bash
-   docker run -p 3000:3000 \
-     -e REACT_APP_HELP_URL=https://docs.nobl9.com \
-     nobl9-onboarding-app
-   ```
-   The application will be available at http://localhost:3000.
+```bash
+export NOBL9_SDK_CLIENT_ID="your-client-id"
+export NOBL9_SDK_CLIENT_SECRET="your-client-secret"
+export PORT="4000"  # Optional, defaults to 4000
+```
+5. Build the backend service.
+   
+```bash
+# Navigate to the service directory
+cd cmd/go-backend
+
+# Build the service
+go build -o go-backend
+
+# Run the service
+./go-backend
+```
+The application will be available at http://localhost:3000.
+The backend will be available at http://localhost:4000
 
 ## Usage Instructions
 
@@ -139,7 +146,7 @@ curl -X POST http://localhost:4000/api/create-project \
 1. Open the application in your browser.
 2. Enter the appID (project name) in the designated field.
    - The appID must contain only letters, numbers, and hyphens.
-3. Add user groups by clicking "Add User Group" and entering comma-separated user IDs along with their roles.
+3. Add user by filling in the form.
    - Each user group must specify a role (Owner, Editor, Viewer, or Integrations user).
    - Maximum 8 users per project.
 4. Review the project details in the confirmation dialog.
@@ -148,10 +155,7 @@ curl -X POST http://localhost:4000/api/create-project \
 ### User Group Management
 - You can add up to 8 users per project.
 - Each user group must specify a role (Owner, Editor, Viewer, or Integrations user).
-- If a user ID does not exist in Nobl9, a configurable help URL will be displayed.
-
-### Admin Notifications
-- Admins will be notified of new project creations via email or webhook, as configured.
+- If a user ID does not exist in Nobl9.
 
 ## Contributing
 We welcome contributions! Please follow these steps:
@@ -162,10 +166,6 @@ We welcome contributions! Please follow these steps:
 
 ## Code of Conduct
 Please be respectful and inclusive in all interactions. We aim to foster a welcoming and collaborative environment for all contributors.
-
-## Docker Usage
-- **Build and Run**: Use `docker build -t nobl9-onboarding-app .` to build the image and `docker run -p 3000:3000 nobl9-onboarding-app` to run it.
-- **Docker Compose**: For local development, use `docker-compose up` to start the application with hot-reloading.
 
 ## License
 This project is licensed under the Mozilla Public License 2.0. See the [LICENSE](LICENSE) file for details. 
