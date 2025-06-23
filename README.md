@@ -26,6 +26,7 @@ The backend requires the following environment variables to be set **at runtime*
 
 - `NOBL9_SDK_CLIENT_ID` (your Nobl9 API client ID)
 - `NOBL9_SDK_CLIENT_SECRET` (your Nobl9 API client secret)
+- `NOBL9_SKIP_TLS_VERIFY` (optional, set to `true` to disable SSL certificate verification for test/dev environments only)
 
 **Set these in your `docker-compose.yml` under the `go-backend` service:**
 **Do NOT put secrets in the Dockerfile.**
@@ -50,7 +51,7 @@ The backend requires the following environment variables to be set **at runtime*
    - Frontend: [http://localhost](http://localhost)
    - Backend API: [http://localhost:4000](http://localhost:4000)
 
-## API Usage (Backend)
+## API Usage to test (Backend)
 
 ### Create Project Endpoint
 
@@ -101,6 +102,7 @@ curl -X POST http://localhost:4000/api/create-project \
 ## Security
 - **Never commit secrets** to the repository or Dockerfiles.
 - Always set sensitive environment variables in your deployment environment (e.g., `docker-compose.yml`, CI/CD secrets, or Kubernetes manifests).
+- **Never set `NOBL9_SKIP_TLS_VERIFY=true` in production!** This disables SSL certificate verification and should only be used for local/test environments with self-signed certificates.
 
 ## Setup Instructions
 

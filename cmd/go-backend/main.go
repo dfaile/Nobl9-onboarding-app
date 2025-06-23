@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -109,6 +110,12 @@ func getValidRoles() string {
 
 // main function sets up the HTTP server and starts listening for requests
 func main() {
+	// Set up custom HTTP client for skipping SSL verification if needed
+	if os.Getenv("NOBL9_SKIP_TLS_VERIFY") == "true" {
+		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+		log.Println("WARNING: SSL certificate verification is DISABLED (NOBL9_SKIP_TLS_VERIFY=true)")
+	}
+
 	// Register the handler for the create project endpoint
 	http.HandleFunc("/api/create-project", handleCreateProject)
 

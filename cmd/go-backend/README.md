@@ -71,7 +71,7 @@ curl -X POST http://localhost:4000/api/create-project \
     "description": "Test-Project-From-Curl-'"$(date +%s)"'",,
     "userGroups": [
       {
-        "userIds": "user@example.com",
+        "userIds": "editor@example.com",
         "role": "project-editor"
       },
       {
