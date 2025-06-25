@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"regexp"
@@ -108,13 +109,33 @@ func getValidRoles() string {
 	return strings.Join(roles, ", ")
 }
 
-// main function sets up the HTTP server and starts listening for requests
-func main() {
-	// Set up custom HTTP client for skipping SSL verification if needed
+// configureTLS sets up custom HTTP transport with TLS verification disabled if needed
+func configureTLS() {
 	if os.Getenv("NOBL9_SKIP_TLS_VERIFY") == "true" {
-		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+		// Create a custom transport with TLS verification disabled
+		customTransport := &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			// Copy other important settings from the default transport
+			Proxy:                 http.ProxyFromEnvironment,
+			DialContext:           (&net.Dialer{Timeout: 30 * time.Second, KeepAlive: 30 * time.Second}).DialContext,
+			ForceAttemptHTTP2:     true,
+			MaxIdleConns:          100,
+			IdleConnTimeout:       90 * time.Second,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+		}
+
+		// Set this as the default transport for all HTTP clients
+		http.DefaultTransport = customTransport
+
 		log.Println("WARNING: SSL certificate verification is DISABLED (NOBL9_SKIP_TLS_VERIFY=true)")
 	}
+}
+
+// main function sets up the HTTP server and starts listening for requests
+func main() {
+	// Configure TLS before doing anything else
+	configureTLS()
 
 	// Register the handler for the create project endpoint
 	http.HandleFunc("/api/create-project", handleCreateProject)
