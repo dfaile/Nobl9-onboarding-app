@@ -132,7 +132,7 @@ const ProjectForm: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label>Enter your user name:</label>
+          <label>Enter your email address:</label>
           {userGroups.map((group, idx) => (
             <div key={idx} className="user-group-row">
               <input
